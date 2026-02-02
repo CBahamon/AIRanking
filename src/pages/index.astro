@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import IAHub from "../components/ia-hub/IAHub";
+import { ias } from "../lib/data";
+
+// With the new dashboard concept, we remove the Layout wrapper padding or manage it differently?
+// Actually, Layout provides Header/Footer. The new Dashboard design has its own Sidebar/Header flow.
+// If we use Layout, we get double headers.
+// We should probably create a new Layout for the Dashboard or simply NOT use the main Layout for the index page if index IS the dashboard which contains everything.
+// HOWEVER: The requested design implies a persistent Sidebar.
+// Let's use a "clean" Layout or just generic HTML structure here if we want to override the default Header.
+// BUT: The user might want the main Header to stay for "Compare / Prompts" links.
+// Let's try to fit the Dashboard INTO the existing Layout first. If it looks double-headed, we can toggle the Header off.
+// Given the mockup description "Sidebar (Filters) ... Header Compacto", it implies the Dashboard HAS its own header structure.
+// Let's assume for now we want to keep the Global Header for top-level site nav, and the Dashboard is the "App" inside.
+// OR: The Dashboard IS the site.
+// Let's stick to the Plan: "Layout > IAHub".
+// To avoid double scrolling, we might need adjustments, but let's ship the component integration first.
+---
+
+<Layout title="AI Ranking">
+	<IAHub client:load initialData={ias} />
+</Layout>

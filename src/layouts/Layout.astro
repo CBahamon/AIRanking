@@ -1,0 +1,86 @@
+---
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import "../styles/global.css";
+
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "AI Ranking - The best place to find and compare AI tools.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        {/* Open Graph / Social */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+
+        {/* AdSense Placeholder (User needs to add ID) */}
+        {
+            /* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX" crossorigin="anonymous"></script> */
+        }
+
+        <ClientRouter />
+        <script is:inline>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            const savedMode = localStorage.getItem("theme-mode") || "system";
+            const savedTheme =
+                localStorage.getItem("theme-palette") || "default";
+
+            // Apply Palette
+            if (savedTheme !== "default") {
+                document.documentElement.setAttribute("data-theme", savedTheme);
+            }
+
+            // Apply Mode
+            const isDark =
+                savedMode === "dark" ||
+                (savedMode === "system" &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (isDark) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        </script>
+    </head>
+    <body
+        class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900"
+    >
+        {
+            /* 
+            UNIFIED DASHBOARD ARCHITECTURE
+            The Header and Sidebar are now managed by the React 'DashboardLayout' component inside the pages.
+            This root layout serves as the HTML shell.
+        */
+        }
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    :root {
+        --font-sans: "Outfit", system-ui, sans-serif;
+    }
+    body {
+        font-family: var(--font-sans);
+    }
+</style>

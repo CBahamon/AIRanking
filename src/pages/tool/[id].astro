@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ToolDetailView from "../../components/ia-hub/ToolDetailView";
+import { ias } from "../../lib/data";
+
+export async function getStaticPaths() {
+    return ias.map((ia) => ({
+        params: { id: ia.id },
+        props: { ia },
+    }));
+}
+
+const { ia } = Astro.props;
+---
+
+<Layout
+    title={`${ia.name} - Precio en Colombia y Características`}
+    description={`Descubre cuánto cuesta ${ia.name} en pesos colombianos. Análisis completo: versión gratis, límites, ${ia.category.join(", ")} y comparación con otras IAs.`}
+>
+    <ToolDetailView client:load ia={ia} />
+</Layout>

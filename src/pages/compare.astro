@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CompareView from "../components/ia-hub/CompareView";
+import { ias } from "../lib/data";
+---
+
+<Layout
+    title="Comparador de IAs - Características y Precios"
+    description="Compara ChatGTP, Claude, DeepSeek y más lado a lado."
+>
+    <CompareView client:load data={ias} />
+</Layout>

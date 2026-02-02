@@ -1,0 +1,44 @@
+---
+import { ui } from '../lib/i18n';
+
+// Static localization for Header (default es)
+const t = ui.es;
+---
+
+<header class="sticky top-0 z-50 w-full backdrop-blur-lg bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      {/* Logo */}
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg group-hover:scale-105 transition-transform">
+          IA
+        </div>
+        <span class="font-bold text-xl tracking-tight text-zinc-900 dark:text-white">
+          Directorio<span class="text-blue-600">IA</span>
+        </span>
+      </a>
+
+      {/* Navigation */}
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          {t['nav.home']}
+        </a>
+        <a href="/compare" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          {t['nav.compare']}
+        </a>
+        <a href="/prompts" class="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          {t['nav.prompts']}
+        </a>
+      </nav>
+
+      {/* Actions (Future: Login/Theme Toggle) */}
+      <div class="flex items-center gap-4">
+        <a href="/compare" class="hidden sm:flex text-sm font-semibold bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
+          Comparar IAs
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
