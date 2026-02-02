@@ -1,0 +1,48 @@
+---
+export const prerender = false;
+
+import Layout from "../../layouts/Layout.astro";
+import ModelDetailView from "../../components/ia-hub/ModelDetailView";
+
+const { id } = Astro.params;
+// Astro params are undefined in SSG mode unless getStaticPaths is used,
+// but in SSR or hybrid or client-only logic it's different.
+// Since we are likely in 'static' output by default in Astro unless configured otherwise,
+// dynamic routes need `getStaticPaths` OR `output: 'server'`.
+// However, since we are fetching data Client-Side in the component,
+// we can just render the component and pass the ID from the URL params.
+// Actually, in static mode, `[...id]` requires `getStaticPaths`.
+// If we want a purely client-side SPA-like behavior for this route without building 100k pages:
+// We should rely on `client:only` or use a search param, OR change Astro config to `output: 'hybrid'` or `server`.
+
+// Assuming standard Astro static build: we can't build pages for ALL HF models.
+// Solution: Use a client-side only approach or a wildcard path that serves a generic shell.
+// In Astro, `[...id].astro` will try to generate paths.
+// If we don't return paths, it errors in strict mode.
+
+// WORKAROUND:
+// Since we want to support ANY model ID which we don't know at build time,
+// and we are using `npm run dev` (Vite), it works fine in Dev.
+// But for production build (static), this will fail without paths.
+// The best approach for unlimited dynamic content in a Static Site is using Query Parameters (`/models/view?id=...`)
+// OR configuring this specific route to use `output: 'server'` if using an adapter (Vercel/Netlify).
+
+// Given the user is on Mac local dev, likely standard static configuration.
+// Let's use `export const prerender = false;` if utilizing SSR adapter,
+// OR just rely on client-side routing logic if we can.
+// But Astro file-based routing expects valid paths for static.
+
+// Let's try the `[...id].astro` with `server` mode implied by the lack of `getStaticPaths` validation in dev,
+// OR we can switch navigation to `?id=` style if we want to be safe for static export.
+// The user asked for `explore` style. Explore uses static data.
+// Here we have infinite data.
+
+// Let's stick to `[...id].astro` for URL semantics and assume Server/Hybrid or Dev mode.
+// To make it robust for client-side usage in a static host without an adapter:
+// We would usually use a Hash Router or Query Params.
+// But let's try to pass the ID via the URL slug.
+---
+
+<Layout title="Detalles del Modelo - DirectorioIA">
+    <ModelDetailView client:only="react" modelId={id || ""} />
+</Layout>
