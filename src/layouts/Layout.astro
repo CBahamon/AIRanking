@@ -27,11 +27,40 @@ const {
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+        <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
         {/* Open Graph / Social */}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content={new URL(Astro.url.pathname, Astro.site)}
+        />
+        <meta
+            property="og:image"
+            content={new URL("/og-image.jpg", Astro.site)}
+        />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+            name="twitter:image"
+            content={new URL("/og-image.jpg", Astro.site)}
+        />
+
+        <meta
+            name="theme-color"
+            content="#ffffff"
+            media="(prefers-color-scheme: light)"
+        />
+        <meta
+            name="theme-color"
+            content="#09090b"
+            media="(prefers-color-scheme: dark)"
+        />
 
         {/* AdSense Placeholder (User needs to add ID) */}
         {

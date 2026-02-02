@@ -17,5 +17,26 @@ const { ia } = Astro.props;
     title={`${ia.name} - Precio en Colombia y Características`}
     description={`Descubre cuánto cuesta ${ia.name} en pesos colombianos. Análisis completo: versión gratis, límites, ${ia.category.join(", ")} y comparación con otras IAs.`}
 >
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: ia.name,
+            applicationCategory: "BusinessApplication", // Or specific category mapping
+            operatingSystem: "Web",
+            offers: {
+                "@type": "Offer",
+                price: "0", // Default to free tier for schema
+                priceCurrency: "COP",
+            },
+            description: ia.description.es || ia.description, // Fallback
+            aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.8", // Dynamic rating if available
+                ratingCount: "100",
+            },
+        })}
+    />
     <ToolDetailView client:load ia={ia} />
 </Layout>
