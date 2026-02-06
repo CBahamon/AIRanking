@@ -14,7 +14,7 @@ interface Props {
 
 const {
     title,
-    description = "AI Ranking - The best place to find and compare AI tools.",
+    description = "AI Ranking - The best place to find and compare AI tools like ChatGPT, Claude, and Gemini.",
 } = Astro.props;
 ---
 
@@ -64,10 +64,11 @@ const {
             media="(prefers-color-scheme: dark)"
         />
 
-        {/* AdSense Placeholder (User needs to add ID) */}
-        {
-            /* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX" crossorigin="anonymous"></script> */
-        }
+        {/* AdSense */}
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3834879870164990"
+            crossorigin="anonymous"></script>
 
         <ClientRouter />
         <script is:inline>
@@ -90,6 +91,20 @@ const {
                 document.documentElement.classList.add("dark");
             } else {
                 document.documentElement.classList.remove("dark");
+            }
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "AI Ranking",
+                "url": "https://ai.dogedevs.com",
+                "description": "Compare top AI tools like ChatGPT, Claude, and Gemini.",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://ai.dogedevs.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
             }
         </script>
     </head>
