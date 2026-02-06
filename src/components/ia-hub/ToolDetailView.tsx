@@ -4,6 +4,7 @@ import type { IAData, LocalizedString, Plan } from '../../lib/types';
 import { useUserLocation } from '../../hooks/useUserLocation';
 import { useStore } from '@nanostores/react';
 import { language, getLocalized, getLocalizedArray } from '../../lib/i18nStore';
+import { categoryTranslations } from '../../lib/data';
 
 interface PricingCardProps {
     plan: {
@@ -74,9 +75,12 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
             {/* Back Navigation */}
             <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 z-20">
                 <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center gap-4">
-                    <a href="/" className="p-2 -ml-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors text-zinc-500">
+                    <button
+                        onClick={() => window.history.length > 1 ? window.history.back() : window.location.href = '/'}
+                        className="p-2 -ml-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors text-zinc-500"
+                    >
                         <ArrowLeft className="w-5 h-5" />
-                    </a>
+                    </button>
                     <span className="font-semibold text-sm text-zinc-500">
                         {lang === 'es' ? 'Volver al Directorio' : 'Back to Directory'}
                     </span>
@@ -118,10 +122,14 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
                                     {t(ia.description)}
                                 </p>
 
+
+
+                                // ... (inside the component)
+
                                 <div className="flex flex-wrap gap-2">
                                     {ia.category.map((cat) => (
                                         <span key={cat} className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded-full text-sm font-medium capitalize">
-                                            {cat}
+                                            {categoryTranslations[cat]?.[lang] || cat}
                                         </span>
                                     ))}
                                 </div>
@@ -174,6 +182,27 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
                                 </ul>
                             </div>
                         </section>
+
+                        {/* Ecosystem Section */}
+                        {ia.ecosystem && (
+                            <section className="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-2xl p-6 shadow-sm overflow-hidden relative">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
+
+                                <h3 className="text-xl font-bold mb-2 relative z-10">{t(ia.ecosystem.title)}</h3>
+                                <p className="text-zinc-300 mb-6 max-w-2xl relative z-10 text-sm leading-relaxed">
+                                    {t(ia.ecosystem.description)}
+                                </p>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+                                    {ia.ecosystem.apps.map((app, i) => (
+                                        <div key={i} className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 backdrop-blur-sm border border-white/10">
+                                            <h4 className="font-bold text-base mb-1 text-white">{app.name}</h4>
+                                            <p className="text-xs text-zinc-300 leading-normal">{t(app.description)}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
 
                         {/* Models Section */}
                         <section className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -328,26 +357,7 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
                             </div>
                         </section>
 
-                        {/* Ecosystem Section */}
-                        {ia.ecosystem && (
-                            <section className="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-2xl p-6 shadow-sm overflow-hidden relative">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
 
-                                <h3 className="text-xl font-bold mb-2 relative z-10">{t(ia.ecosystem.title)}</h3>
-                                <p className="text-zinc-300 mb-6 max-w-2xl relative z-10 text-sm leading-relaxed">
-                                    {t(ia.ecosystem.description)}
-                                </p>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
-                                    {ia.ecosystem.apps.map((app, i) => (
-                                        <div key={i} className="bg-white/10 hover:bg-white/15 transition-colors rounded-xl p-4 backdrop-blur-sm border border-white/10">
-                                            <h4 className="font-bold text-base mb-1 text-white">{app.name}</h4>
-                                            <p className="text-xs text-zinc-300 leading-normal">{t(app.description)}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
 
                     </div>
 

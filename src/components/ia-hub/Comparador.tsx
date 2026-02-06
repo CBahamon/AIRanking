@@ -4,6 +4,7 @@ import { Plus, X, Check, XCircle, Search, Trash2, Info, Loader2 } from 'lucide-r
 import { useUserLocation } from '../../hooks/useUserLocation';
 import { useStore } from '@nanostores/react';
 import { language, getLocalized, getLocalizedArray } from '../../lib/i18nStore';
+import DashboardLayout from './DashboardLayout';
 
 function PricingCell({ plan, lang }: { plan: any, lang: string }) {
     const { formattedPrice, currencyCode, loading } = useUserLocation(plan.priceUsd);
@@ -168,145 +169,160 @@ export default function Comparador({ allData }: ComparadorProps) {
     }
 
     return (
-        <div className="w-full bg-white dark:bg-zinc-900 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col h-full">
+        <DashboardLayout activePage="compare">
+            <div className="p-6 md:p-10 max-w-7xl mx-auto h-[calc(100vh-4rem)] flex flex-col">
+                <div className="mb-6 flex-none">
+                    <h1 className="text-3xl font-bold mb-2 tracking-tight">
+                        {lang === 'es' ? 'Comparador de IA' : 'AI Comparator'}
+                    </h1>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                        {lang === 'es'
+                            ? 'Analiza puntos fuertes, precios y recomendaciones lado a lado.'
+                            : 'Analyze strengths, pricing, and benchmarks side-by-side.'}
+                    </p>
+                </div>
 
-            {/* Top Controller Section */}
-            <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex-none">
-                {/* Search / Add Selector */}
-                <div className="max-w-xl mx-auto relative mb-4">
-                    <div className="relative">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
-                        <input
-                            type="text"
-                            className="w-full pl-12 pr-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 shadow-sm"
-                            placeholder={lang === 'es' ? "Agregar IA para comparar..." : "Add AI to compare..."}
-                            value={searchTerm}
-                            onFocus={() => setIsDropdownOpen(true)}
-                            onChange={(e) => { setSearchTerm(e.target.value); setIsDropdownOpen(true); }}
-                            disabled={selectedIds.length >= MAX_COMPARE}
-                        />
-                    </div>
+                <div className="w-full bg-white dark:bg-zinc-900 rounded-3xl shadow-sm border border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col flex-1 min-h-0">
 
-                    {isDropdownOpen && availableIAs.length > 0 && selectedIds.length < MAX_COMPARE && (
-                        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl z-20 max-h-60 overflow-y-auto">
-                            {availableIAs.map(ia => (
-                                <button
-                                    key={ia.id}
-                                    onClick={() => addIA(ia.id)}
-                                    className="w-full text-left px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 flex items-center justify-between group"
-                                >
-                                    <span className="font-medium">{ia.name}</span>
-                                    <Plus className="w-4 h-4 text-zinc-400 group-hover:text-primary-500" />
-                                </button>
+                    {/* Top Controller Section */}
+                    <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex-none">
+                        {/* Search / Add Selector */}
+                        <div className="max-w-xl mx-auto relative mb-4">
+                            <div className="relative">
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
+                                <input
+                                    type="text"
+                                    className="w-full pl-12 pr-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 shadow-sm"
+                                    placeholder={lang === 'es' ? "Agregar IA para comparar..." : "Add AI to compare..."}
+                                    value={searchTerm}
+                                    onFocus={() => setIsDropdownOpen(true)}
+                                    onChange={(e) => { setSearchTerm(e.target.value); setIsDropdownOpen(true); }}
+                                    disabled={selectedIds.length >= MAX_COMPARE}
+                                />
+                            </div>
+
+                            {isDropdownOpen && availableIAs.length > 0 && selectedIds.length < MAX_COMPARE && (
+                                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-xl z-20 max-h-60 overflow-y-auto">
+                                    {availableIAs.map(ia => (
+                                        <button
+                                            key={ia.id}
+                                            onClick={() => addIA(ia.id)}
+                                            className="w-full text-left px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-700/50 flex items-center justify-between group"
+                                        >
+                                            <span className="font-medium">{ia.name}</span>
+                                            <Plus className="w-4 h-4 text-zinc-400 group-hover:text-primary-500" />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Selected Chips */}
+                        <div className="flex flex-wrap justify-center gap-3 min-h-[32px]">
+                            {selectedIAs.map((ia, idx) => (
+                                <div key={ia.id} className="flex items-center gap-2 pl-2 pr-2 py-1 bg-white dark:bg-zinc-800 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm">
+                                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold shadow-sm" style={{ backgroundColor: getDistinctColor(idx) }}>
+                                        {ia.name[0]}
+                                    </div>
+                                    <span className="font-medium text-xs pr-1">{ia.name}</span>
+                                    <button onClick={() => removeIA(ia.id)} className="w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                                        <X className="w-3 h-3" />
+                                    </button>
+                                </div>
                             ))}
                         </div>
-                    )}
-                </div>
+                    </div>
 
-                {/* Selected Chips */}
-                <div className="flex flex-wrap justify-center gap-3 min-h-[32px]">
-                    {selectedIAs.map((ia, idx) => (
-                        <div key={ia.id} className="flex items-center gap-2 pl-2 pr-2 py-1 bg-white dark:bg-zinc-800 rounded-full border border-zinc-200 dark:border-zinc-700 shadow-sm">
-                            <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-bold shadow-sm" style={{ backgroundColor: getDistinctColor(idx) }}>
-                                {ia.name[0]}
-                            </div>
-                            <span className="font-medium text-xs pr-1">{ia.name}</span>
-                            <button onClick={() => removeIA(ia.id)} className="w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
-                                <X className="w-3 h-3" />
-                            </button>
+                    {/* Comparison Table */}
+                    {selectedIAs.length > 0 ? (
+                        <div className="flex-1 overflow-auto">
+                            <table className="w-full text-left border-collapse min-w-[600px]">
+                                <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800 text-sm">
+
+                                    {/* Visual Benchmark Row */}
+                                    <tr>
+                                        <td className="p-4 font-bold text-zinc-500 w-1/4 pl-8 align-middle bg-zinc-50/30 dark:bg-zinc-900/30 border-r border-zinc-100 dark:border-zinc-800">
+                                            <div className="flex items-center gap-2">
+                                                <span>{lang === 'es' ? 'Rendimiento Visual' : 'Visual Performance'}</span>
+                                                <div className="group relative">
+                                                    <Info className="w-4 h-4 text-zinc-400 cursor-help" />
+                                                    <div className="absolute left-0 bottom-full mb-2 w-48 p-2 bg-black text-white text-xs rounded hidden group-hover:block z-10">
+                                                        {lang === 'es' ? 'Comparativa visual de 5 ejes: Español, Código, Creatividad, Velocidad y Economía.' : 'Visual comparison of 5 axes: Spanish, Code, Creativity, Speed, and Economy.'}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        {selectedIAs.map((ia, idx) => (
+                                            <td key={ia.id} className="p-6 text-center align-bottom border-r border-zinc-100 dark:border-zinc-800 last:border-0">
+                                                <MiniRadarContent ia={ia} color={getDistinctColor(idx)} />
+                                            </td>
+                                        ))}
+                                    </tr>
+
+                                    {/* Price Row */}
+                                    <tr className="bg-zinc-50/50 dark:bg-zinc-800/20">
+                                        <td className="p-4 font-bold text-zinc-500 pl-8 border-r border-zinc-100 dark:border-zinc-800">
+                                            {lang === 'es' ? 'Precio Mensual' : 'Monthly Price'}
+                                        </td>
+                                        {selectedIAs.map(ia => (
+                                            <td key={ia.id} className="p-4 text-center border-r border-zinc-200/50 dark:border-zinc-700/50 last:border-0">
+                                                <PricingCell plan={ia.pricing.plans[0]} lang={lang} />
+                                            </td>
+                                        ))}
+                                    </tr>
+
+                                    {/* Free Tier Row */}
+                                    <tr>
+                                        <td className="p-4 font-bold text-zinc-500 pl-8 border-r border-zinc-100 dark:border-zinc-800">
+                                            {lang === 'es' ? 'Versión Gratis' : 'Free Version'}
+                                        </td>
+                                        {selectedIAs.map(ia => (
+                                            <td key={ia.id} className="p-4 text-center border-r border-zinc-100 dark:border-zinc-800 last:border-0">
+                                                {ia.pricing.free.available ? (
+                                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
+                                                        <Check className="w-3.5 h-3.5" /> {lang === 'es' ? 'SI' : 'YES'}
+                                                    </div>
+                                                ) : (
+                                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold">
+                                                        <XCircle className="w-3.5 h-3.5" /> NO
+                                                    </div>
+                                                )}
+                                            </td>
+                                        ))}
+                                    </tr>
+
+                                    {/* Features Matrix Grid */}
+                                    <tr>
+                                        <td className="p-4 font-bold text-zinc-500 pl-8 align-top pt-8 border-r border-zinc-100 dark:border-zinc-800">
+                                            {lang === 'es' ? 'Características' : 'Features'}
+                                        </td>
+                                        {selectedIAs.map(ia => (
+                                            <td key={ia.id} className="p-4 align-top border-r border-zinc-100 dark:border-zinc-800 last:border-0">
+                                                <ul className="space-y-3">
+                                                    {getLocalizedArray(ia.strengths, lang).map((s, i) => (
+                                                        <li key={i} className="flex gap-2 items-start text-xs text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 p-2 rounded-lg border border-zinc-100 dark:border-zinc-700">
+                                                            <Check className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
+                                                            <span>{s}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    ))}
+                    ) : (
+                        <div className="flex-1 flex flex-col items-center justify-center text-zinc-400 min-h-[300px]">
+                            <div className="w-16 h-16 rounded-full bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center mb-4">
+                                <Plus className="w-8 h-8 opacity-20" />
+                            </div>
+                            <p>{lang === 'es' ? 'Selecciona herramientas arriba para comenzar la comparación.' : 'Select tools above to start comparing.'}</p>
+                        </div>
+                    )}
+
                 </div>
             </div>
-
-            {/* Comparison Table */}
-            {selectedIAs.length > 0 ? (
-                <div className="flex-1 overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[600px]">
-                        <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800 text-sm">
-
-                            {/* Visual Benchmark Row */}
-                            <tr>
-                                <td className="p-4 font-bold text-zinc-500 w-1/4 pl-8 align-middle bg-zinc-50/30 dark:bg-zinc-900/30 border-r border-zinc-100 dark:border-zinc-800">
-                                    <div className="flex items-center gap-2">
-                                        <span>{lang === 'es' ? 'Rendimiento Visual' : 'Visual Performance'}</span>
-                                        <div className="group relative">
-                                            <Info className="w-4 h-4 text-zinc-400 cursor-help" />
-                                            <div className="absolute left-0 bottom-full mb-2 w-48 p-2 bg-black text-white text-xs rounded hidden group-hover:block z-10">
-                                                {lang === 'es' ? 'Comparativa visual de 5 ejes: Español, Código, Creatividad, Velocidad y Economía.' : 'Visual comparison of 5 axes: Spanish, Code, Creativity, Speed, and Economy.'}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                {selectedIAs.map((ia, idx) => (
-                                    <td key={ia.id} className="p-6 text-center align-bottom border-r border-zinc-100 dark:border-zinc-800 last:border-0">
-                                        <MiniRadarContent ia={ia} color={getDistinctColor(idx)} />
-                                    </td>
-                                ))}
-                            </tr>
-
-                            {/* Price Row */}
-                            <tr className="bg-zinc-50/50 dark:bg-zinc-800/20">
-                                <td className="p-4 font-bold text-zinc-500 pl-8 border-r border-zinc-100 dark:border-zinc-800">
-                                    {lang === 'es' ? 'Precio Mensual' : 'Monthly Price'}
-                                </td>
-                                {selectedIAs.map(ia => (
-                                    <td key={ia.id} className="p-4 text-center border-r border-zinc-200/50 dark:border-zinc-700/50 last:border-0">
-                                        <PricingCell plan={ia.pricing.plans[0]} lang={lang} />
-                                    </td>
-                                ))}
-                            </tr>
-
-                            {/* Free Tier Row */}
-                            <tr>
-                                <td className="p-4 font-bold text-zinc-500 pl-8 border-r border-zinc-100 dark:border-zinc-800">
-                                    {lang === 'es' ? 'Versión Gratis' : 'Free Version'}
-                                </td>
-                                {selectedIAs.map(ia => (
-                                    <td key={ia.id} className="p-4 text-center border-r border-zinc-100 dark:border-zinc-800 last:border-0">
-                                        {ia.pricing.free.available ? (
-                                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
-                                                <Check className="w-3.5 h-3.5" /> {lang === 'es' ? 'SI' : 'YES'}
-                                            </div>
-                                        ) : (
-                                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold">
-                                                <XCircle className="w-3.5 h-3.5" /> NO
-                                            </div>
-                                        )}
-                                    </td>
-                                ))}
-                            </tr>
-
-                            {/* Features Matrix Grid */}
-                            <tr>
-                                <td className="p-4 font-bold text-zinc-500 pl-8 align-top pt-8 border-r border-zinc-100 dark:border-zinc-800">
-                                    {lang === 'es' ? 'Características' : 'Features'}
-                                </td>
-                                {selectedIAs.map(ia => (
-                                    <td key={ia.id} className="p-4 align-top border-r border-zinc-100 dark:border-zinc-800 last:border-0">
-                                        <ul className="space-y-3">
-                                            {getLocalizedArray(ia.strengths, lang).map((s, i) => (
-                                                <li key={i} className="flex gap-2 items-start text-xs text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-800 p-2 rounded-lg border border-zinc-100 dark:border-zinc-700">
-                                                    <Check className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
-                                                    <span>{s}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                ))}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            ) : (
-                <div className="flex-1 flex flex-col items-center justify-center text-zinc-400 min-h-[300px]">
-                    <div className="w-16 h-16 rounded-full bg-zinc-50 dark:bg-zinc-800 flex items-center justify-center mb-4">
-                        <Plus className="w-8 h-8 opacity-20" />
-                    </div>
-                    <p>{lang === 'es' ? 'Selecciona herramientas arriba para comenzar la comparación.' : 'Select tools above to start comparing.'}</p>
-                </div>
-            )}
-
-        </div>
+        </DashboardLayout>
     );
 }

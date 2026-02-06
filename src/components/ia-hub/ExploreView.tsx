@@ -10,6 +10,14 @@ interface ExploreViewProps {
     initialData: IAData[];
 }
 
+import { categoryTranslations } from '../../lib/data';
+
+const getCategoryLabel = (cat: string, lang: 'es' | 'en') => {
+    const translation = categoryTranslations[cat.toLowerCase()];
+    if (translation) return translation[lang];
+    return cat.charAt(0).toUpperCase() + cat.slice(1);
+};
+
 export default function ExploreView({ initialData }: ExploreViewProps) {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState<string | null>(null);
@@ -79,7 +87,7 @@ export default function ExploreView({ initialData }: ExploreViewProps) {
                                 onClick={() => setCategory(cat)}
                                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all border capitalize ${category === cat ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-black' : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300'}`}
                             >
-                                {cat}
+                                {getCategoryLabel(cat, lang)}
                             </button>
                         ))}
                     </div>

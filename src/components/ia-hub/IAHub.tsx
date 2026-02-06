@@ -4,12 +4,15 @@ import IACard from './IACard';
 import RecomendadorIA from './RecomendadorIA';
 import DashboardLayout from './DashboardLayout'; // Import New Layout
 import { Search, Sparkles, Filter, Home, Zap, DollarSign } from 'lucide-react';
+import { useStore } from '@nanostores/react';
+import { language, getLocalized } from '../../lib/i18nStore';
 
 interface IAHubProps {
     initialData: IAData[];
 }
 
 export default function IAHub({ initialData }: IAHubProps) {
+    const lang = useStore(language);
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState<string | null>(null);
 
@@ -20,18 +23,20 @@ export default function IAHub({ initialData }: IAHubProps) {
         return Array.from(cats).sort();
     }, [initialData]);
 
-    // Trending Data (Top 3 by rating/votes)
+    // Trending Data (Explicitly ChatGPT, Claude, Gemini)
     const trendingData = useMemo(() => {
-        return [...initialData]
-            .sort((a, b) => b.rating - a.rating || b.totalVotes - a.totalVotes)
-            .slice(0, 3);
+        const priorityIds = ['chatgpt', 'claude', 'gemini'];
+        return initialData
+            .filter(ia => priorityIds.includes(ia.id))
+            .sort((a, b) => priorityIds.indexOf(a.id) - priorityIds.indexOf(b.id));
     }, [initialData]);
 
     // Filtered Data for "All Models"
     const filteredData = useMemo(() => {
         return initialData.filter(ia => {
+            const description = getLocalized(ia.description, lang);
             const matchesSearch = ia.name.toLowerCase().includes(search.toLowerCase()) ||
-                ia.description.toLowerCase().includes(search.toLowerCase());
+                description.toLowerCase().includes(search.toLowerCase());
             const matchesCategory = category ? ia.category.includes(category) : true;
             return matchesSearch && matchesCategory;
         });

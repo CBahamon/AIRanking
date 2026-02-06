@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import IAHub from "../components/ia-hub/IAHub";
-import { ias } from "../lib/data";
+import { initialData } from "../lib/data";
 
 // With the new dashboard concept, we remove the Layout wrapper padding or manage it differently?
 // Actually, Layout provides Header/Footer. The new Dashboard design has its own Sidebar/Header flow.
@@ -18,8 +18,8 @@ import { ias } from "../lib/data";
 // To avoid double scrolling, we might need adjustments, but let's ship the component integration first.
 ---
 
-<Layout title="AI Ranking">
-	<IAHub client:load initialData={ias} />
+<Layout title="DirectorioIA - Los mejores modelos y herramientas de IA">
+	<IAHub client:load initialData={initialData} />
 
 	<section
 		class="container mx-auto px-4 py-12 text-zinc-600 dark:text-zinc-400 text-sm"

@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ExploreView from "../components/ia-hub/ExploreView";
-import { ias } from "../lib/data";
+import { initialData } from "../lib/data";
 ---
 
 <Layout title="Explorar Modelos - DirectorioIA">
-    <ExploreView client:load initialData={ias} />
+    <ExploreView client:load initialData={initialData} />
 </Layout>
