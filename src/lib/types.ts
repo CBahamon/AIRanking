@@ -28,6 +28,7 @@ export interface IAData {
   totalVotes: number;
   userCount: LocalizedString;
   description: LocalizedString;
+  longDescription?: LocalizedString; // Markdown content for detailed pages
   models: string[]; // ID references to models
 
   modelPricing?: {

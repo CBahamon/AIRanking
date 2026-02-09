@@ -149,6 +149,22 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
                     </div>
                 </div>
 
+
+
+                {/* Long Description / Blog Content */}
+                {ia.longDescription && (
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-[-2rem]">
+                        <div className="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm prose dark:prose-invert max-w-none">
+                            <h2 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-white">
+                                {lang === 'es' ? 'Análisis Detallado' : 'Detailed Analysis'}
+                            </h2>
+                            <div className="whitespace-pre-line text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                {t(ia.longDescription)}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Content Grid */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -426,6 +442,6 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
                     </div>
                 </div>
             </div>
-        </DashboardLayout>
+        </DashboardLayout >
     );
 }
