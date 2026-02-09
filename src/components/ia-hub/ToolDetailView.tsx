@@ -124,7 +124,7 @@ export default function ToolDetailView({ ia }: ToolDetailViewProps) {
 
 
 
-                                // ... (inside the component)
+
 
                                 <div className="flex flex-wrap gap-2">
                                     {ia.category.map((cat) => (
