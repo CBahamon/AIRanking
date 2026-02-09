@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ai.dogedevs.com',
+  site: 'https://dogedevs.com',
   adapter: vercel(),
   integrations: [react(), sitemap()],
 
