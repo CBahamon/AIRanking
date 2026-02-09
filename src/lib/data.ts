@@ -234,6 +234,42 @@ If you can only pay for one AI subscription, **ChatGPT Plus** remains the safest
             es: 'El líder supremo en 2026. Con Claude Opus 4.6 y Sonnet 4.5, redefine la programación agéntica. Su capacidad de "Computer Use" con Zoom visual es inigualable.',
             en: 'The supreme leader in 2026. With Claude Opus 4.6 and Sonnet 4.5, it redefines agentic coding. Its "Computer Use" capability with visual Zoom is unmatched.'
         },
+        longDescription: {
+            es: `### Claude: El Arquitecto del Código y la Ética
+
+Claude, de Anthropic, se ha posicionado como la **inteligencia artificial "Constitucional"** y el compañero favorito de los desarrolladores de software senior. Mientras otros modelos buscan velocidad pura, Claude prioriza la **seguridad, la precisión y la capacidad de actuar como un agente autónomo**.
+
+**¿Por qué elegir Claude en 2026?**
+
+1.  **Computer Use (Uso de Computadora):**
+    Esta es la "Killer Feature" de Claude. A diferencia de ChatGPT que vive en el chat, Claude puede tomar control (con tu permiso) de tu mouse y teclado para navegar webs complejas, usar software de escritorio y realizar tareas repetitivas como "bajar todas las facturas del portal del banco".
+
+2.  **Artifacts 2.0 y Proyectos:**
+    La función de "Artifacts" permite ver el código renderizado (React, HTML, SVG) en una ventana lateral instantáneamente. Con la versión 2.0, puedes desplegar estas micro-apps a la nube con un solo clic. Además, los "Proyectos" te permiten subir repositorios enteros de código para que Claude entienda el contexto global de tu app.
+
+3.  **Ventana de Contexto Masiva y Precisa:**
+    Claude fue pionero en ofrecer ventanas de contexto de 200k+ tokens con una precisión de "agujja en un pajar" casi perfecta. Es ideal para analizar libros enteros, contratos legales largos o bases de código heredadas sin alucinar detalles.
+
+**Veredicto:**
+Si eres programador, escritor técnico o necesitas un asistente que pueda *hacer* cosas en tu PC, **Claude Pro** es la inversión correcta. Su capacidad de razonamiento en ingeniería de software (SWE-bench) suele superar a sus rivales.`,
+            en: `### Claude: The Architect of Code and Ethics
+
+Claude, from Anthropic, has positioned itself as the **"Constitutional" artificial intelligence** and the favorite companion of senior software developers. While other models seek pure speed, Claude prioritizes **safety, precision, and the ability to act as an autonomous agent**.
+
+**Why choose Claude in 2026?**
+
+1.  **Computer Use:**
+    This is Claude's "Killer Feature". Unlike ChatGPT which lives in the chat, Claude can take control (with your permission) of your mouse and keyboard to navigate complex webs, use desktop software, and perform repetitive tasks like "downloading all invoices from the bank portal".
+
+2.  **Artifacts 2.0 and Projects:**
+    The "Artifacts" feature allows you to see rendered code (React, HTML, SVG) in a side window instantly. With version 2.0, you can deploy these micro-apps to the cloud with a single click. Additionally, "Projects" allow you to upload entire code repositories so Claude understands the global context of your app.
+
+3.  **Massive and Precise Context Window:**
+    Claude was a pioneer in offering 200k+ token context windows with near-perfect "needle in a haystack" precision. It is ideal for analyzing entire books, long legal contracts, or legacy codebases without hallucinating details.
+
+**Verdict:**
+If you are a programmer, technical writer, or need an assistant that can *do* things on your PC, **Claude Pro** is the right investment. Its reasoning capability in software engineering (SWE-bench) often outperforms its rivals.`
+        },
         models: ['Claude 4.6 Opus', 'Claude 4.5 Sonnet', 'Claude 4.5 Haiku'],
         ecosystem: {
             title: { es: 'Anthropic MCP', en: 'Anthropic MCP' },
@@ -342,6 +378,42 @@ If you can only pay for one AI subscription, **ChatGPT Plus** remains the safest
             es: 'El ecosistema más grande. Con Gemini 3.0 Pro y la tecnología "Project Astra", ofrece asistencia multimodal en tiempo real en gafas, teléfonos y web.',
             en: 'The largest ecosystem. With Gemini 3.0 Pro and "Project Astra" technology, offers real-time multimodal assistance on glasses, phones, and web.'
         },
+        longDescription: {
+            es: `### Gemini: El Cerebro Multimodal de Google
+
+Gemini no es solo un chatbot; es la integración final de la inteligencia artificial en cada producto de Google que ya usas (Gmail, Docs, Android, YouTube). Su principal ventaja es que "nació" multimodal: entiende video, audio, imágenes y código de forma nativa, no como parches separados.
+
+**Puntos Fuertes de Gemini en 2026:**
+
+1.  **Integración Profunda (Google Workspace):**
+    Imagina decirle a tu IA: *"Busca en mis correos la factura del hotel de Londres, ponla en una hoja de cálculo y envía un resumen a mi contador"*. Gemini hace esto sin pestañear porque vive dentro de tu cuenta de Google.
+
+2.  **Ventana de Contexto Gigante (2M+ Tokens):**
+    Gemini ha roto récords con su capacidad de "memoria" activa. Puedes subir videos de 1 hora, miles de líneas de código o múltiples libros PDF, y hacer preguntas específicas sobre cualquier detalle. Ningún otro modelo comercial maneja este volumen de datos tan bien.
+
+3.  **Project Astra y Gafas:**
+    Gemini es el motor detrás de la nueva generación de asistentes de realidad aumentada. Puede "ver" lo que tú ves y responder preguntas sobre tu entorno en tiempo real (ej. "¿Dónde dejé las llaves?" o "¿Qué planta es esta?").
+
+**Veredicto:**
+Si ya vives en el ecosistema de Google (Android, Gmail, Drive), **Gemini Advanced** es la opción lógica. Su capacidad para trabajar con tus datos personales de forma segura y su ventana de contexto masiva lo hacen indispensable para la productividad de oficina.`,
+            en: `### Gemini: Google's Multimodal Brain
+
+Gemini is not just a chatbot; it is the final integration of artificial intelligence into every Google product you already use (Gmail, Docs, Android, YouTube). Its main advantage is that it was "born" multimodal: it understands video, audio, images, and code natively, not as separate patches.
+
+**Gemini's Strengths in 2026:**
+
+1.  **Deep Integration (Google Workspace):**
+    Imagine telling your AI: *"Search my emails for the London hotel invoice, put it in a spreadsheet, and send a summary to my accountant."* Gemini does this without blinking because it lives inside your Google account.
+
+2.  **Giant Context Window (2M+ Tokens):**
+    Gemini has broken records with its active "memory" capacity. You can upload 1-hour videos, thousands of lines of code, or multiple PDF books, and ask specific questions about any detail. No other commercial model handles this volume of data so well.
+
+3.  **Project Astra and Glasses:**
+    Gemini is the engine behind the new generation of augmented reality assistants. It can "see" what you see and answer questions about your surroundings in real-time (e.g., "Where did I leave my keys?" or "What plant is this?").
+
+**Verdict:**
+If you already live in the Google ecosystem (Android, Gmail, Drive), **Gemini Advanced** is the logical choice. Its ability to work with your personal data securely and its massive context window make it indispensable for office productivity.`
+        },
         models: ['Gemini 3.0 Pro', 'Gemini 3.0 Flash', 'Gemini Ultra 2.5 (Research)'],
         modelPricing: {
             free: ['Gemini 3.0 Flash', 'Gemini 2.0 Flash'],
@@ -398,6 +470,42 @@ If you can only pay for one AI subscription, **ChatGPT Plus** remains the safest
         description: {
             es: 'El disruptor del mercado. Con DeepSeek-V4 (Feb 2026) y R1-Turbo, ofrece rendimiento nivel GPT-5 a una fracción del costo. Líder indiscutible en coding Open Source.',
             en: 'The market disruptor. With DeepSeek-V4 (Feb 2026) and R1-Turbo, offers GPT-5 level performance at a fraction of the cost. Undisputed Open Source coding leader.'
+        },
+        longDescription: {
+            es: `### DeepSeek: La Revolución Open Source
+
+DeepSeek ha sacudido Silicon Valley al demostrar que no necesitas billones de dólares para crear IA de vanguardia. Es el héroe del **Open Source**, ofreciendo modelos que compiten cara a cara con GPT-5 y Claude Opus, pero que puedes descargar y correr en tu propia infraestructura (o usar por precios ridículamente bajos).
+
+**¿Por qué todo el mundo habla de DeepSeek?**
+
+1.  **Rendimiento vs Costo:**
+    La API de DeepSeek es órdenes de magnitud más barata que la de OpenAI o Anthropic. Esto ha permitido que miles de startups construyan herramientas poderosas sin arruinarse. Para el usuario final, significa acceso gratuito o muy barato a inteligencia de nivel "Flagship".
+
+2.  **Especialización en Código (Coder V4):**
+    Sus modelos "Coder" son legendarios. Entrenados con bases de datos masivas de GitHub, entienden lógica de programación compleja, refactorización y tests mejor que muchos modelos cerrados.
+
+3.  **Transparencia:**
+    A diferencia de las "Cajas Negras" de Google u OpenAI, DeepSeek suele liberar los pesos de sus modelos y papers técnicos detallados (como el famoso DeepSeek-R1). Esto genera una confianza inmensa en la comunidad técnica y científica.
+
+**Veredicto:**
+Si eres desarrollador, estudiante o una startup bootstrapped, **DeepSeek** es tu mejor aliado. No tiene el ecosistema pulido de apps de consumo de ChatGPT, pero tiene el "cerebro" más eficiente y accesible del mercado.`,
+            en: `### DeepSeek: The Open Source Revolution
+
+DeepSeek has shaken Silicon Valley by proving you don't need billions of dollars to create cutting-edge AI. It is the hero of **Open Source**, offering models that compete head-to-head with GPT-5 and Claude Opus, but that you can download and run on your own infrastructure (or use for ridiculously low prices).
+
+**Why is everyone talking about DeepSeek?**
+
+1.  **Performance vs Cost:**
+    DeepSeek's API is orders of magnitude cheaper than OpenAI or Anthropic's. This has allowed thousands of startups to build powerful tools without going broke. For the end user, it means free or very cheap access to "Flagship" level intelligence.
+
+2.  **Code Specialization (Coder V4):**
+    Its "Coder" models are legendary. Trained with massive GitHub databases, they understand complex programming logic, refactoring, and tests better than many closed models.
+
+3.  **Transparency:**
+    Unlike the "Black Boxes" of Google or OpenAI, DeepSeek often releases its model weights and detailed technical papers (like the famous DeepSeek-R1). This generates immense trust in the technical and scientific community.
+
+**Verdict:**
+If you are a developer, student, or bootstrapped startup, **DeepSeek** is your best ally. It doesn't have the polished consumer app ecosystem of ChatGPT, but it has the most efficient and accessible "brain" in the market.`
         },
         models: ['DeepSeek-V4 (Preview)', 'DeepSeek-R1 (Reasoning)', 'DeepSeek-V3.2 (Stable)'],
         modelPricing: {
