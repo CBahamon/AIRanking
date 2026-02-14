@@ -4,7 +4,7 @@ import ThemeSelector from '../ThemeSelector';
 
 interface DashboardLayoutProps {
     children: ReactNode;
-    activePage: 'home' | 'compare' | 'prompts' | 'explore' | 'models';
+    activePage: 'home' | 'compare' | 'prompts' | 'explore' | 'models' | 'about' | 'contact';
     sidebarExtras?: ReactNode; // Slot for Filters (Home) or Toc (Other pages)
 }
 
@@ -110,6 +110,14 @@ export default function DashboardLayout({ children, activePage, sidebarExtras }:
 
                 {/* Footer Area */}
                 <div className="p-4 border-t border-zinc-100 dark:border-zinc-800/50 flex flex-col gap-2">
+                    {/* Compliance Links */}
+                    <div className="grid grid-cols-2 gap-y-2 gap-x-1 px-3 mb-1">
+                        <a href="/about" className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">About</a>
+                        <a href="/contact" className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">Contact</a>
+                        <a href="/privacy" className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">Privacy</a>
+                        <a href="/terms" className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors">Terms</a>
+                    </div>
+
                     <a href="https://github.com/CBahamon" target="_blank" className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
                         <div className="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
                             <ExternalLink className="w-3 h-3" />

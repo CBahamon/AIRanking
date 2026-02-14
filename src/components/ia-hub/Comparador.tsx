@@ -76,7 +76,7 @@ export default function Comparador({ allData }: ComparadorProps) {
             ia.benchmarks.code,
             ia.benchmarks.creativity,
             ia.benchmarks.speed,
-            ia.benchmarks.free
+            ia.benchmarks.free || 0
         ];
 
         // Calculated points for polygon and interaction

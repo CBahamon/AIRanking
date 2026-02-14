@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DashboardLayout from "../components/ia-hub/DashboardLayout";
+---
+
+<Layout title="Sobre Nosotros - DogeDevs">
+    <DashboardLayout client:load activePage="about">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+            <h1 class="text-4xl font-bold mb-6 text-zinc-900 dark:text-white">Sobre Nosotros</h1>
+            
+            <div class="prose dark:prose-invert max-w-none space-y-6 text-zinc-600 dark:text-zinc-300">
+                <p class="text-lg leading-relaxed">
+                    Bienvenidos a <strong>DogeDevs</strong>, el equipo detrás de <span class="text-primary-600 font-semibold">AI Ranking</span>.
+                </p>
+
+                <p>
+                    En un mundo donde la inteligencia artificial avanza a pasos agigantados, encontrar la herramienta adecuada puede ser abrumador. 
+                    Nuestra misión es simplificar este proceso, ofreciendo comparativas honestas, benchmarks visuales y una plataforma 
+                    centralizada para descubrir el potencial de la IA.
+                </p>
+
+                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">Nuestra Filosofía</h2>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Transparencia:</strong> Datos reales, sin sesgos ocultos.</li>
+                    <li><strong>Comunidad:</strong> Construimos herramientas pensando en desarrolladores y creadores.</li>
+                    <li><strong>Innovación:</strong> Siempre al día con los últimos modelos y lanzamientos.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-zinc-900 dark:text-white mt-8 mb-4">¿Por qué DogeDevs?</h2>
+                <p>
+                    Creemos en el desarrollo de software ágil, divertido y, sobre todo, útil. AI Ranking es solo el comienzo 
+                    de nuestro viaje para empoderar a la próxima generación de constructores digitales.
+                </p>
+            </div>
+        </div>
+    </DashboardLayout>
+</Layout>

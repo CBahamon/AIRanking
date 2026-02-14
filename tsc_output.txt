@@ -1,0 +1,1 @@
+﻿src/components/ia-hub/Comparador.tsx(85,24): error TS18048: 'val' is possibly 'undefined'.

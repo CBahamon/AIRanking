@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DashboardLayout from "../components/ia-hub/DashboardLayout";
+import { Mail, MessageSquare } from "lucide-react";
+---
+
+<Layout title="Contacto - DogeDevs">
+    <DashboardLayout client:load activePage="contact">
+        <div class="max-w-2xl mx-auto px-6 py-12">
+            <h1 class="text-4xl font-bold mb-6 text-zinc-900 dark:text-white">Contacto</h1>
+            <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-10 leading-relaxed">
+                ¿Tienes alguna pregunta, sugerencia o simplemente quieres saludar? 
+                En <strong>DogeDevs</strong> nos encanta escuchar a nuestra comunidad. 
+                Estamos aquí para ayudarte a sacar el máximo provecho de <span class="text-primary-600 font-semibold">AI Ranking</span>.
+            </p>
+
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-xl">
+                        <Mail className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-zinc-900 dark:text-white mb-1">Correo Electrónico</h3>
+                        <p class="text-sm text-zinc-500 mb-2">Para consultas generales y soporte:</p>
+                        <a 
+                            href="mailto:bahamon2803@gmail.com" 
+                            class="text-primary-600 dark:text-primary-400 font-medium hover:underline text-lg"
+                        >
+                            bahamon2803@gmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="my-8 border-t border-zinc-100 dark:border-zinc-800"></div>
+
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-zinc-100 dark:bg-zinc-800 rounded-xl">
+                        <MessageSquare className="w-6 h-6 text-zinc-600 dark:text-zinc-400" />
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-zinc-900 dark:text-white mb-1">Redes Sociales</h3>
+                        <p class="text-sm text-zinc-500 mb-2">Síguenos para novedades (Próximamente):</p>
+                        <span class="text-zinc-400 italic text-sm">@dogedevs / @airanking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </DashboardLayout>
+</Layout>
